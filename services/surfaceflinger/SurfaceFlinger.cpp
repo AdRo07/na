@@ -3581,6 +3581,7 @@ status_t SurfaceFlinger::captureScreen(const sp<IBinder>& display,
             Mutex::Autolock _l(flinger->mStateLock);
             sp<const DisplayDevice> hw(flinger->getDisplayDevice(display));
             bool useReadPixels = this->useReadPixels && !flinger->mGpuToCpuSupported;
+/*
 #ifdef USE_MHEAP_SCREENSHOT
             if (!useReadPixels) {
 #endif
@@ -3593,6 +3594,10 @@ status_t SurfaceFlinger::captureScreen(const sp<IBinder>& display,
                 return BAD_VALUE;
             }
 #endif
+*/
+            result = flinger->captureScreenImplLocked(hw, producer,
+                    sourceCrop, reqWidth, reqHeight, minLayerZ, maxLayerZ,
+                    useIdentityTransform, rotation, useReadPixels);
             static_cast<GraphicProducerWrapper*>(producer->asBinder().get())->exit(result);
             return true;
         }
