@@ -82,11 +82,11 @@ DisplayDevice::DisplayDevice(
       mActiveConfig(0)
 {
     mNativeWindow = new Surface(producer, false);
-    #ifndef EGL_NEEDS_FNW
+#ifndef EGL_NEEDS_FNW
     ANativeWindow* const window = mNativeWindow.get();
-    #else
+#else
     ANativeWindow* const window = new FramebufferNativeWindow();
-    #endif
+#endif
 
     /*
      * Create our display's surface

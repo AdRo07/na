@@ -132,6 +132,11 @@ extern "C" int _ZN7android14SurfaceControl11setPositionEii(int32_t x, int32_t y)
 }
 //#endif
 
+// DoPa (20140226) - kludge to create a needed symbol - similar to CM11
+status_t SurfaceControl::setPosition(int32_t x, int32_t y) {
+    return setPosition((float)x, (float)y);
+}
+
 status_t SurfaceControl::setSize(uint32_t w, uint32_t h) {
     status_t err = validate();
     if (err < 0) return err;
